@@ -14,10 +14,10 @@ router.get("/payment",middleware.isloggedin,function(req,res){
     params['WEBSITE']='DEFAULT',
     params['CHANNEL_ID']='WEB',
     params['INDUSTRY_TYPE_ID']='Retail',
-    params['ORDER_ID']=String(req.user.username),
-    params['CUST_ID']=String(req.user._id),
+    params['ORDER_ID']="Merchant"+Math.random().toString(36).substring(2,15),
+    params['CUST_ID']=String(req.user.username)+Math.random().toString(36).substring(2,15),
     params['TXN_AMOUNT']='1',
-    params['CALLBACK_URL']='https://avinashjindal2609.herokuapp.com/campgrounds ',
+    params['CALLBACK_URL']='/campgrounds',
     params['EMAIL']='ajindal_be18@thapar.edu',
     params['MOBILE_NO']='9050995986'
 
