@@ -25,12 +25,14 @@ var campground=require("./models/campground");
 var Comment=require("./models/comments");
 
 
-// var seedDb=require("./seed");
 
 var indexroutes=require("./routes/index");
 var campgroundroutes=require("./routes/campgrounds");
 var commentroutes=require("./routes/comments");
-
+var paymentroutes=require("./routes/payment");
+// ////////////////////////////////////
+// payment gateway////////////////////
+/////////////////////////////////////
 
 
 
@@ -60,6 +62,7 @@ app.use(function(req,res,next){
 app.use(indexroutes); 
 app.use(campgroundroutes);
 app.use(commentroutes);
+app.use(paymentroutes);
 
 
 

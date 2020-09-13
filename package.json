@@ -9,9 +9,9 @@
   },
   "author": "Avinash jindal",
   "license": "ISC",
-  "engines" : {
-    "node" : "12.18.0" 
-  } ,
+  "engines": {
+    "node": "12.18.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -21,10 +21,12 @@
     "method-override": "^3.0.0",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
     "post": "0.0.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "stripe": "^8.95.0"
   }
 }

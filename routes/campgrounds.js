@@ -55,7 +55,7 @@ router.post("/campgrounds/:id/slot", middleware.isloggedin ,function(req,res){
         else{
             foundcampground.slot=req.body.slot;
             foundcampground.save();
-            res.redirect("/campgrounds");
+            res.redirect("/payment");
         }
     })
     
