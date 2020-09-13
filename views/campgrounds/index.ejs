@@ -1,0 +1,25 @@
+<%- include("../partials/header") %>
+<div class="container mt-5">
+    <div class="container jumbotron">    
+<h1>WELCOME TO MEDILAB</h1>
+<p>We are here to help you for a Medical Assistance</p>
+<a href="/campgrounds/new"  class="btn btn-large btn-primary">Make an Appointment</a>
+</div>    
+
+<div class="row text-center">
+    <% campgrounds.forEach(function(campground){ %>
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="img-thumbnail mb-1">
+    <!-- <img src="<%= campground.image %>" style="width: 150px; height: 100px;" alt="Unable to load image due to network issues"> -->
+                   <div>
+                    <h4 class="text-break"><%= campground.name %></h4>
+                    <h4 class="text-break"><%= campground.day %></h4>
+                    <h4 class="text-break"><%= campground.slot %></h4>
+                    <a href="/campgrounds/<%= campground._id %>">More Info</a>
+                   </div>
+                </div>
+        </div>
+     <% }) %> 
+</div>
+    <%- include("../partials/footer") %>
+</div>
