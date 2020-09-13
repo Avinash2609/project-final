@@ -16,7 +16,7 @@ var bodyparser=require("body-parser");
 app.use(bodyparser.urlencoded({extended:true}));
 
 var mongoose=require("mongoose");
-mongoose.connect("mongodb+srv://Avinash2609:Avinash@5181@cluster0.qa8fk.mongodb.net/Medilab?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Medilab?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 var flash = require("connect-flash");
 app.use(flash());
