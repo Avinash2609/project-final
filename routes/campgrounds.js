@@ -2,13 +2,28 @@ var express=require("express");
 var router=express.Router({mergeParams: true});
 var campground=require("../models/campground");
 var middleware = require("../middleware/index");
-
+var mongoose=require("mongoose");
+const { all } = require(".");
 
 router.get("/campgrounds",function(req,res){
     campground.find({},function(err,allcampgrounds){
         if(err){
             req.flash("error", err);
         } else{
+            allcampgrounds.forEach(function(got){
+                if(got.txn_id=="null"){
+                    console.log(got.name);
+                    campground.findByIdAndRemove(got._id,function(err){
+                        if(err){
+                            req.flash("error", err);
+                        }
+                        else{
+                            console.log("item deleted");
+                        }
+                    })    
+                }
+            })
+
             res.render("campgrounds/index",{campgrounds:allcampgrounds, currentuser: req.user});
         }
     })
@@ -32,6 +47,7 @@ router.post("/campgrounds", middleware.isloggedin ,function(req,res){
             req.flash("error", err);
         } else{
             camp.author=myauthor;
+            camp.txn_id="null";
             camp.save();
             console.log(camp);
 
@@ -55,13 +71,14 @@ router.post("/campgrounds/:id/slot", middleware.isloggedin ,function(req,res){
         else{
             foundcampground.slot=req.body.slot;
             foundcampground.save();
-            res.redirect("/payment");
+            res.redirect("/campgrounds/" + req.params.id +"/payment");
         }
     })
     
     req.flash("success", "Your appointment request has been sent successfully. Thank you!");
     
 })
+
 // ===========================================show
 
 router.get("/campgrounds/:id",function(req,res){
