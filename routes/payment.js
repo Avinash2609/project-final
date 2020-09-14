@@ -18,8 +18,8 @@ router.get("/campgrounds/:id/payment",middleware.isloggedin,function(req,res){
     params['ORDER_ID']="Merchant"+Math.random().toString(36).substring(2,15),
     params['CUST_ID']=String(req.user.username)+Math.random().toString(36).substring(2,15),
     params['TXN_AMOUNT']='1',
-    // params['CALLBACK_URL']='http://localhost:3000/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
-    params['CALLBACK_URL']='https://avinashjindal2510.herokuapp.com/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
+    params['CALLBACK_URL']='http://localhost:3000/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
+    // params['CALLBACK_URL']='https://avinashjindal2510.herokuapp.com/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
     params['EMAIL']='ajindal_be18@thapar.edu',
     params['MOBILE_NO']='9050995986'
 
@@ -53,6 +53,7 @@ router.post("/campgrounds/:id/status/:id1", middleware.isloggedin ,function(req,
         }
         else{
             foundcampground.txn_id=req.body.TXNID;
+            foundcampground.btxn_id=req.body.BANKTXNID;
             foundcampground.save();
             console.log(foundcampground);
             res.render("campgrounds/payment",{campground: foundcampground,details: req.body});

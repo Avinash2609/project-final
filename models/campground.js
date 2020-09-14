@@ -14,7 +14,8 @@ var campgroundschema=new mongoose.Schema({
         },
         username: String
     },
-    txn_id: String
+    txn_id: String,
+    btxn_id: String
     // comments:[
     //     {
     //         type: mongoose.Schema.Types.ObjectId,

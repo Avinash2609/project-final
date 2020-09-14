@@ -23,6 +23,8 @@
                         </h5>
                         <p><%= campground.slot %></p>
                         <p><%= campground.description %></p>
+                        <p><%= campground.txn_id %></p>
+                        <p><%= campground.btxn_id %></p>
                         <p><em>Submitted by: <%= campground.author.username %></em></p>
                         <div>
                             <% if( currentuser && campground.author.id.equals(currentuser._id) ){ %>

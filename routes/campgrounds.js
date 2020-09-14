@@ -11,7 +11,7 @@ router.get("/campgrounds",function(req,res){
             req.flash("error", err);
         } else{
             allcampgrounds.forEach(function(got){
-                if(got.txn_id=="null"){
+                if(got.btxn_id==""){
                     console.log(got.name);
                     campground.findByIdAndRemove(got._id,function(err){
                         if(err){
@@ -47,7 +47,7 @@ router.post("/campgrounds", middleware.isloggedin ,function(req,res){
             req.flash("error", err);
         } else{
             camp.author=myauthor;
-            camp.txn_id="null";
+            camp.btxn_id="";
             camp.save();
             console.log(camp);
 
@@ -71,7 +71,12 @@ router.post("/campgrounds/:id/slot", middleware.isloggedin ,function(req,res){
         else{
             foundcampground.slot=req.body.slot;
             foundcampground.save();
+            console.log(foundcampground);
+            if(foundcampground.btxn_id == ""){
             res.redirect("/campgrounds/" + req.params.id +"/payment");
+            } else {
+                res.redirect("/campgrounds/" + foundcampground._id);
+            }
         }
     })
     
