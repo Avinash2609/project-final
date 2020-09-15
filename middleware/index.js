@@ -8,7 +8,7 @@ middlewareobj.isloggedin = function (req,res,next){
         return next();
     }
     req.flash("error", "Please login to proceed");
-    res.redirect("/login");
+    res.redirect("/register");
 }
 
 middlewareobj.checkcampownership=function (req,res,next){
