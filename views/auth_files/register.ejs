@@ -1,15 +1,18 @@
 
 <%- include ("../partials/header") %>
 
-<div class="container mt-5">
-    <div class="container jumbotron">
-        <h1>Sign Up!!!</h1>
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+        <p>Login or Register with:</p>
+
+        <a href="/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+
     </div>
-    <form action="/register" method="POST">
-        <input class="form-control" type="text" name="username" placeholder="Email">
-        <input class="form-control mt-1" type="password" name="password" placeholder="password">
-        <button class="btn btn-sm btn-success mt-3">Submit</button>
-    </form>
-<a href="/campgrounds" class="btn btn-sm btn-info">Go back</a>
+
+</div>
     <%- include("../partials/footer") %>
 </div>
+

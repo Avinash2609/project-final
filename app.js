@@ -47,9 +47,6 @@ app.use(expresssession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new localstrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
     res.locals.currentuser=req.user; //req.user contains the info of currently logged in user

@@ -3,8 +3,6 @@ var router=express.Router({mergeParams: true});
 var campground=require("../models/campground");
 var middleware = require("../middleware/index");
 var mongoose=require("mongoose");
-const { all } = require(".");
-
 router.get("/campgrounds",function(req,res){
     campground.find({},function(err,allcampgrounds){
         if(err){
@@ -23,7 +21,6 @@ router.get("/campgrounds",function(req,res){
                     })    
                 }
             })
-
             res.render("campgrounds/index",{campgrounds:allcampgrounds, currentuser: req.user});
         }
     })
@@ -39,7 +36,7 @@ router.post("/campgrounds", middleware.isloggedin ,function(req,res){
     
     var myauthor={
         id: req.user.id,
-        username: req.user.username
+        username: req.user.displayName
     };
 
     campground.create(req.body.campground , function(err,camp){
@@ -47,6 +44,7 @@ router.post("/campgrounds", middleware.isloggedin ,function(req,res){
             req.flash("error", err);
         } else{
             camp.author=myauthor;
+            console.log(camp.author);
             camp.btxn_id="";
             camp.save();
             console.log(camp);

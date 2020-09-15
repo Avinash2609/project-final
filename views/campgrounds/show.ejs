@@ -27,7 +27,7 @@
                         <p><%= campground.btxn_id %></p>
                         <p><em>Submitted by: <%= campground.author.username %></em></p>
                         <div>
-                            <% if( currentuser && campground.author.id.equals(currentuser._id) ){ %>
+                            <% if( currentuser && campground.author.id==(currentuser.id) ){ %>
                                     <form  action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
                                         <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                                         <button class="btn btn-danger text-dark btn-sm ml-2">Cancel my Appointment</button>

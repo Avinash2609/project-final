@@ -8,10 +8,7 @@ var campgroundschema=new mongoose.Schema({
     slot: String,
     description: String,
     author:{
-        id:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "user"
-        },
+        id:Number,
         username: String
     },
     txn_id: String,

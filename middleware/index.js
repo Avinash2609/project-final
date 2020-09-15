@@ -18,7 +18,7 @@ middlewareobj.checkcampownership=function (req,res,next){
                 req.flash("error", "Something went wrong");
                 res.redirect("back");
             } else {
-                if(foundcampground.author.id.equals(req.user._id)){
+                if(foundcampground.author.id==(req.user.id)){
                     return next();
                 }
                 else{
@@ -41,7 +41,7 @@ middlewareobj.checkcommentownership=function(req,res,next){
                 req.flash("error", "Something went wrong");
                 res.redirect("back");
             } else {
-                if(foundcomment.author.id.equals(req.user._id)){
+                if(foundcomment.author.id==(req.user.id)){
                     return next();
                 }
                 else{

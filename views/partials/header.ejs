@@ -124,14 +124,14 @@
 
           <% if(!currentuser){ %>
             <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link" href="/register">Login/Register</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="/register">Sign Up</a>
-            </li>
+            </li> -->
           <% } else { %>
              <li class="nav-item">
-              <a class="nav-link" href="#t">Signed In As <%= currentuser.username %> </a>
+              <a class="nav-link" href="#t">Signed In As <%= currentuser.displayName %> </a>
             </li>  
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
