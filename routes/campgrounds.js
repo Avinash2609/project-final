@@ -21,10 +21,22 @@ router.get("/campgrounds",function(req,res){
                     })    
                 }
             })
+            res.redirect("/campgrounds1");
+        }
+    })
+})
+
+router.get("/campgrounds1",function(req,res){
+    campground.find({},function(err,allcampgrounds){
+        if(err){
+            req.flash("error", err);
+        } else{
             res.render("campgrounds/index",{campgrounds:allcampgrounds, currentuser: req.user});
         }
     })
 })
+
+
 
 // ==================================================new route
 router.get("/campgrounds/new", middleware.isloggedin ,function(req,res){
@@ -36,7 +48,9 @@ router.post("/campgrounds", middleware.isloggedin ,function(req,res){
     
     var myauthor={
         id: req.user.id,
-        username: req.user.displayName
+        username: req.user.displayName,
+        image: req.user.photos[0].value,
+        gmailid:req.user.emails[0].value
     };
 
     campground.create(req.body.campground , function(err,camp){
@@ -78,7 +92,6 @@ router.post("/campgrounds/:id/slot", middleware.isloggedin ,function(req,res){
                 foundcampground.save();
                 res.redirect("/campgrounds/" + foundcampground._id); 
             }
-            // console.log(req.user.emails[0].value);
             else if(foundcampground.btxn_id == ""){
             res.redirect("/campgrounds/" + req.params.id +"/payment");
             } else {

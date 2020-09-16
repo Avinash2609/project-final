@@ -9,7 +9,9 @@ var campgroundschema=new mongoose.Schema({
     description: String,
     author:{
         id:Number,
-        username: String
+        username: String,
+        gmailid: String,
+        image: String
     },
     txn_id: String,
     btxn_id: String
