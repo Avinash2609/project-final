@@ -1,13 +1,14 @@
 var express=require("express");
 var passport=require("passport");
+require('dotenv').config();
+
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var router=express.Router({mergeParams: true});
 var User=require("../models/user");
 
-
 passport.use(new GoogleStrategy({
-    clientID: "661951738728-bep3r57422ovb9h01jcrp5ct5qgrdd7u.apps.googleusercontent.com",
-    clientSecret: "MvQgKyi7FkFAO4EnfuCPZ9Yl",
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     // callbackURL: "http://localhost:3000/google/callback",
     callbackURL: "https://avinashjindal2510.herokuapp.com/google/callback",
     passReqToCallback: true

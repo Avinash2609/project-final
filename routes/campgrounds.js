@@ -70,7 +70,16 @@ router.post("/campgrounds/:id/slot", middleware.isloggedin ,function(req,res){
             foundcampground.slot=req.body.slot;
             foundcampground.save();
             console.log(foundcampground);
-            if(foundcampground.btxn_id == ""){
+            if(req.user.emails[0].value.includes("@thapar.edu")){
+                console.log(req.user.emails[0].value);
+                console.log("thapar student");
+                foundcampground.txn_id = "Free for thapar students";
+                foundcampground.btxn_id = "thapar_discount";
+                foundcampground.save();
+                res.redirect("/campgrounds/" + foundcampground._id); 
+            }
+            // console.log(req.user.emails[0].value);
+            else if(foundcampground.btxn_id == ""){
             res.redirect("/campgrounds/" + req.params.id +"/payment");
             } else {
                 res.redirect("/campgrounds/" + foundcampground._id);

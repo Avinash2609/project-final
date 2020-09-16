@@ -15,8 +15,10 @@ app.use(methodoverride("_method"));
 var bodyparser=require("body-parser");
 app.use(bodyparser.urlencoded({extended:true}));
 
+require('dotenv').config();
+
 var mongoose=require("mongoose");
-mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Medilab?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
 
 var flash = require("connect-flash");
 app.use(flash());
