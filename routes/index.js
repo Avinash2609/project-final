@@ -9,8 +9,8 @@ var User=require("../models/user");
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    // callbackURL: "http://localhost:3000/google/callback",
-    callbackURL: "https://avinashjindal2510.herokuapp.com/google/callback",
+    callbackURL: "http://localhost:3000/google/callback",
+    // callbackURL: "https://avinashjindal2510.herokuapp.com/google/callback",
     passReqToCallback: true
   },
   function(request,accessToken, refreshToken, profile, done) {
@@ -47,14 +47,14 @@ router.get("/google/callback",passport.authenticate('google',
 router.get("/success",function(req,res){
 
     req.flash("success", "Welcome!!! you are successfully Logged In as " + req.user.displayName);
-    res.redirect("/campgrounds");
+    res.redirect("/info");
 })
 
 
 router.get("/logout",function(req,res){
     req.flash("success", "Thank you!!! you are successfully Logged Out");
     req.logOut();
-    res.redirect("/campgrounds");
+    res.redirect("/info");
 })
 
 module.exports = router;

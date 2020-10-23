@@ -28,16 +28,20 @@
                         <p><%= campground.description %></p>
                         <p>Transaction Id: <%= campground.txn_id %></p>
                         <p>Bank Transaction Id:<%= campground.btxn_id %></p>
+                        <p>Doctor Id:<%= campground.doctor_id %></p>
                         <p><b><em>Submitted by: <%= campground.author.gmailid %></em></b></p>
                         <div>
-                            <% if( currentuser && campground.author.id==(currentuser.id) ){ %>
+                            <% if( currentuser && (campground.author.id==(currentuser.id)) ){ %>
                                     <form  action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
                                         <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                                         <button class="btn btn-danger text-dark btn-sm ml-2">Cancel my Appointment</button>
-                                        <a class="btn btn-info btn-sm ml-2" href="/campgrounds">Go back</a>
+                                        <a class="btn btn-info btn-sm ml-2" href="/campgrounds/final/<%=campground._id %>">Go back</a>
                                     </form>
+                                <% } else if( currentuser && (usermail)==doc.email ) { %>
+                                    <a class="btn btn-warning btn-sm" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                                    <a class="btn btn-info btn-sm" href="/campgrounds/final/<%=campground._id %>">Go back</a>
                                 <% } else { %>
-                                    <a class="btn btn-info btn-sm" href="/campgrounds">Go back</a>
+                                    <a class="btn btn-info btn-sm" href="/campgrounds/final/<%=campground._id %>">Go back</a>
                                 <% } %>
 
                         </div>

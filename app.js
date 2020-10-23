@@ -3,6 +3,9 @@ var app=express();
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
+var cors=require('cors');
+app.use(cors());
+
 var passport=require("passport");
 var localstrategy=require("passport-local");
 var passportlocalmongoose=require("passport-local-mongoose");

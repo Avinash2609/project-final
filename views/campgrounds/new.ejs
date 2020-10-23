@@ -3,11 +3,11 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Make an Appointment</h2>
+        <h2>Make an Appointment </h2>
         <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
       </div>
 
-      <form action="/campgrounds" method="post" role="form" class="php-email-form">
+      <form action="/campgrounds/<%= docid %>" method="post" role="form" class="php-email-form">
         <div class="form-row">
           <div class="col-md-4 form-group">
             <input type="text" name="campground[name]" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -44,7 +44,7 @@
           </div>
 
       </form>
-      <a class="btn btn-info" href="/campgrounds">Go back</a>
+      <a class="btn btn-info" href="/info">Go back</a>
 
     </div>
   </section>

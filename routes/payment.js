@@ -31,8 +31,8 @@ router.get("/campgrounds/:id/payment",middleware.isloggedin,function(req,res){
     params['ORDER_ID']="Merchant"+Math.random().toString(36).substring(2,15),
     params['CUST_ID']=String(req.user.username)+Math.random().toString(36).substring(2,15),
     params['TXN_AMOUNT']='1',
-    // params['CALLBACK_URL']='http://localhost:3000/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
-    params['CALLBACK_URL']='https://avinashjindal2510.herokuapp.com/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
+    params['CALLBACK_URL']='http://localhost:3000/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
+    // params['CALLBACK_URL']='https://avinashjindal2510.herokuapp.com/campgrounds/' + req.params.id +'/status/' + params['ORDER_ID'],
     params['EMAIL']='ajindal_be18@thapar.edu',
     params['MOBILE_NO']='9050995986'
 
@@ -62,16 +62,16 @@ router.post("/campgrounds/:id/status/:id1", middleware.isloggedin ,function(req,
     campground.findById(req.params.id, function(err, foundcampground){
         if(err){
             req.flash("error", err);
-            res.redirect("/campgrounds");
+            res.redirect("/info");
         }
         else{
             foundcampground.txn_id=req.body.TXNID;
             foundcampground.btxn_id=req.body.BANKTXNID;
             foundcampground.save();
-            console.log(foundcampground);
+            // console.log(foundcampground);
 
             var mailOptions = {
-                from: 'ajindal_be18@gmail.com',
+                from: 'ajindal_be18@thapar.edu',
                 to: req.user.emails[0].value,
                 subject: 'Payment Confirmation',
                 html: `<h1>Hi!!! ${foundcampground.name}</h1>
@@ -139,7 +139,7 @@ router.post("/campgrounds/:id/status/:id1", middleware.isloggedin ,function(req,
                 }
               });
 
-            res.render("campgrounds/payment",{campground: foundcampground,details: req.body});
+            res.render("campgrounds/payment",{fcampground: foundcampground,details: req.body});
         }
     })
     

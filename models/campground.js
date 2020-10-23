@@ -14,13 +14,7 @@ var campgroundschema=new mongoose.Schema({
         image: String
     },
     txn_id: String,
-    btxn_id: String
-    // comments:[
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "comment" 
-    //     }
-    // ]
-
+    btxn_id: String,
+    doctor_id: String,
 });
 module.exports=mongoose.model("campground",campgroundschema);  
